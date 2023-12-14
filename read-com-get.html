@@ -24,9 +24,9 @@
             const produtos= document.querySelector(`#produtos`);
             const titulosProdutos =document.createElement('h2')
 
-            produtos.innetHTML = '';
+            produtos.innerHTML = '';
             titulosProdutos.innerHTML = 'Produtos'
-            produtos.append(tituloProduto)
+            produtos.append(titulosProdutos)
         
             
             resposta.forEach(produto => {
