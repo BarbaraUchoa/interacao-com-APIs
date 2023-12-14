@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interação com APIs / read com GET</title>
+</head>
+<body>
+    <h1> Read com GET 💕</h1>
+    <button type="button" id="carregar">Carregar Produtos</button>
+    <a href="./index.html">Home</a>
+    <div id="produtos">
+        <h2>Produtos</h2>
+    </div>
+    <script>
+        document.querySelector('#carregar').addEventListener('click',() => {
+            fetch('http://[::1]:3000/produtos',{
+                method: 'GET',
+                headers: {
+                    'content-type':'application/json'
+                }
+        }).then(resposta =>resposta.json())
+          .then(resposta => {
+            const produtos= document.querySelector(`#produtos`);
+            const titulosProdutos =document.createElement('h2')
+
+            produtos.innetHTML = '';
+            titulosProdutos.innerHTML = 'Produtos'
+            produtos.append(tituloProduto)
+        
+            
+            resposta.forEach(produto => {
+                    produtos.innerHTML += `<ul><li>ID:${produto.id}</li><li>NOME: ${produto.nome}</li></ul>`;
+                        
+                });
+                    
+                });
+        
+        })
+    </script>
+</body>
+</html>
