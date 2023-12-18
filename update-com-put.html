@@ -6,19 +6,20 @@
     <title>Interação com APIs / Create com Post</title>
 </head>
 <body>
-    <h1> Create com Post 💞</h1>
+    <h1> UPDATE com PUT 💘</h1>
     <a href="./index.html">Home</a>
 
     <form action=""  method="get">
 
         <div class="control-form">
             <label for="idProduto">ID:</label>
-            <input type="text" id="idProduto" name="idProduto"
-            desabled>
+            <input type="number" min="1" id="idProduto" name="idProduto"
+            required>
         </div>
         <div class="control-form">
             <label for="nomeProduto">NOME:</label>
-            <input type="text" id="nomeProduto" name="nomeProduto">
+            <input type="text" id="nomeProduto" name="nomeProduto"
+            required>
         </div>
         
         <div class="Controle-form">
@@ -28,9 +29,10 @@
                 <option value="Suspensão">Suspensão</option>
                 <option value="Carroceria">Carroceria</option>
                 <option value="Acessório">Acessório</option>
+                <option value="Segurança">Segurança</option>
             </select>
-        </div>
-        <button type="button" id="cadastrar">Cadastrar Produtos</button>
+        </div> 
+        <button type="button" id="atualizar">Atualizar Produtos</button>
 
     </form>
    
@@ -43,16 +45,18 @@
         buscaprodutos();
 
 
-        document.querySelector('#cadastrar').addEventListener(`click`,()=> {
-             const dadosProduto = {
+        document.querySelector('#atualizar').addEventListener(`click`,()=> {
+             
+            
+            const dadosProduto = {
                 "id": null, 
                 "nome": document.querySelector('#nomeProduto').value,
                 "tipo": document.querySelector('#tipoProdutos').value
              }
             
-            
-            fetch('http://[::1]:3000/produtos',{
-                method: 'POST',
+             const idProduto = document.querySelector('#idProduto').value
+            fetch(`http://[::1]:3000/produtos/${idProduto}`,{
+                method: 'PUT',
                 headers: {
                     'content-type':'application/json'
                 },
@@ -60,7 +64,7 @@
 
             }).then(resposta=>{
                 if (resposta.ok) {
-                    window.alert('Produto Cadastrado');
+                    window.alert('Produto Atualizado');
                     buscaprodutos();
                 }else{
                     window.alert('Erro')
