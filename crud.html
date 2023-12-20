@@ -9,35 +9,98 @@
     <h1>UPDATE com PUT 🤞</h1>
     <a href="./index.html">↩ Home</a>
 
-    <form action="" method="post">
+    <button type="button" id="novoProduto">Novo Produto</button>
 
-        <div class="controle-form">
+    
+   
+    <div id="produtos"></div>
+    <div id="overlay" class="oculto"></div>
+
+    <style>     
+        #overlay {
+            position:absolute;
+            top:0;
+            left: 0;
+            background-color: #0008;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        #modalCreate {
+            position: absolute;
+            top:calc(50%- 150px);
+            left:calc(50%- 200px);
+            width: 400px;
+            height: 300px;
+            background-color: #fff;
+            z-index: 2;
+            border-radius: 12px;
+        }
+        .oculto {
+            display: none;
+        }
+    </style>
+
+    <div id="modalCreate" class="modal oculto">
+        <h3>Formulário de Cadastro</h3>
+    <!--Formulário do creat-->
+    <form action=""  method="post">
+
+        <div class="control-form">
             <label for="idProduto">ID:</label>
-            <input type="number" min="1" id="idProduto" name="idProduto" required>
+            <input type="text" id="idProduto" name="idProduto"
+            desabled>
         </div>
-
-        <div class="controle-form">
-            <label for="nomeProduto">Nome:</label>
-            <input type="text" id="nomeProduto" name="nomeProduto" required>
+        <div class="control-form">
+            <label for="nomeProduto">NOME:</label>
+            <input type="text" id="nomeProduto" name="nomeProduto">
         </div>
-
-        <div class="controle-form">
-            <label for="tipoProduto">Tipo:</label>
-            <select name="tipoProduto" id="tipoProduto">
-                <option value="Controle" selected>Controle</option>
-                <option value="Segurança">Segurança</option>
+        
+        <div class="Controle-form">
+            <label for="tipoProdutos">Tipo:</label>
+             <select name="tipoProdutos" id="tipoProdutos">
+                <option value="Controle">Controle</option>
                 <option value="Suspensão">Suspensão</option>
                 <option value="Carroceria">Carroceria</option>
                 <option value="Acessório">Acessório</option>
             </select>
         </div>
-
-        <button type="button" id="atualizar">Atualizar</button>
+        <button type="button" id="cadastrar">Cadastrar Produtos</button>
 
     </form>
 
-    <div id="produtos"></div>
+    </div>
+    <div id="modalUpdate"class="modal oculto">
 
+        <form action="" method="post">
+
+            <div class="controle-form">
+                <label for="idProduto">ID:</label>
+                <input type="number" min="1" id="idProduto" name="idProduto" required>
+            </div>
+    
+            <div class="controle-form">
+                <label for="nomeProduto">Nome:</label>
+                <input type="text" id="nomeProduto" name="nomeProduto" required>
+            </div>
+    
+            <div class="controle-form">
+                <label for="tipoProduto">Tipo:</label>
+                <select name="tipoProduto" id="tipoProduto">
+                    <option value="Controle" selected>Controle</option>
+                    <option value="Segurança">Segurança</option>
+                    <option value="Suspensão">Suspensão</option>
+                    <option value="Carroceria">Carroceria</option>
+                    <option value="Acessório">Acessório</option>
+                </select>
+            </div>
+    
+            <button type="button" id="atualizar">Atualizar</button>
+    
+        </form>
+    
+    </div>
     <script>
         buscaProdutos();
 
@@ -121,6 +184,11 @@
                 document.querySelector('#tipoProduto').value = event.target.closest('ul').querySelector('[data-produto="tipoProduto"]').innerHTML;
 
             }
+        })
+        document.querySelector('#novoProduto').addEventListener('click',()=>{
+
+            document.querySelector('#overlay').classList.toggle('oculto');
+            document.querySelector('#modalcreate').classList.toggle('oculto');
         })
     </script>
 </body>
